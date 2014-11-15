@@ -12,11 +12,9 @@ public class Fraction {
 	private int numerator;
 	private int denominator;
 
-	public Fraction(int num, int denom) {
+	public Fraction(int num, int denom) throws IllegalArgumentException {
 		if (denom == 0) {
-			System.out.println("Invalid fraction with denominator 0");
-			// this should use exceptions
-			return;
+			throw new IllegalArgumentException("Invalid fraction with denominator 0.");
 		}
 		int gcd = GreatestCommonDivisor(num, denom);
 		setNumerator(num / gcd);

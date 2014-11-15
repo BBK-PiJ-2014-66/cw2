@@ -31,12 +31,11 @@ public class FractionTest {
 		boolean testPass;
 		String DescribeTest;
 		
-		DescribeTest = "That 1/0 should throw an exception";
+		DescribeTest = "That 1/0 should throw an IllegalArgumentException exception";
                 try {
 			new Fraction(1,0); 
 			testPass = false;
-		} catch (Exception e) { /* N.B. catching general exception is bad practice: 
-                                           http://stackoverflow.com/questions/1075895/how-can-i-catch-all-the-exceptions-that-will-be-thrown-through-reading-and-writi */
+		} catch (IllegalArgumentException e) { 
 			testPass = true; 
 		}
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
