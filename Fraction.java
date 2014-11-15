@@ -92,6 +92,17 @@ public class Fraction {
 		return new Fraction(num, denom);
 	}
 
+	public Fraction AbsValue() {
+                int num = Math.abs(this.getNumerator());
+                int denom =  Math.abs(this.getDenominator());
+                return new Fraction(num, denom);
+        }
+
+	public Fraction Negate() {
+                int num =  -this.getNumerator();
+                int denom =  this.getDenominator();
+                return new Fraction(num, denom);
+        }
 
 	private int GreatestCommonDivisor(int a, int b) {
 		/* finds GreatestCommonDivisor by Euclid's method

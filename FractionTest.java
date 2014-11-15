@@ -80,6 +80,15 @@ public class FractionTest {
                	testPass = (new Fraction(2,9).divide(new Fraction(3,5))).equals(new Fraction(10,27)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
+		DescribeTest = "AbsValue: that absValue(-7/9) = 7/9";
+		testPass = (new Fraction(-7,9).AbsValue().equals(new Fraction(7,9)));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = "Negate: that Negate(7/9) = -7/9";
+		testPass = (new Fraction(7,9).Negate().equals(new Fraction(-7,9)));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+
 		if (beVerbose) {
 			if (numbFails==0) {
 				System.out.println("FractionTest: All tests pass");
