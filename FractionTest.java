@@ -64,7 +64,23 @@ public class FractionTest {
 		testPass =  !(new Fraction(4,-8).equals(new Fraction(1,2)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
+		DescribeTest = "Add: that 1/2 + 1/4 gives 3/4";
+               	testPass = (new Fraction(1,2).add(new Fraction(1,4))).equals(new Fraction(3,4)); 
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = "Add: that 2/9 + 3/5 gives 37/45";
+               	testPass = (new Fraction(2,9).add(new Fraction(3,5))).equals(new Fraction(37,45)); 
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		if (beVerbose) {
+			if (numbFails==0) {
+				System.out.println("FractionTest: All tests pass");
+			} else {
+				System.out.println("FractionTest: " + numbFails + " tests FAIL.");
+			}
+		}
 		assert (numbFails==0) : "FractionTest failed "+ numbFails + " tests";
+
 
  
 	}
