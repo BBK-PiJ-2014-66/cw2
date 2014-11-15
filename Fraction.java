@@ -79,6 +79,20 @@ public class Fraction {
 		return new Fraction(num, denom);
 	}
 
+	public Fraction subtract(Fraction other) {
+		int num = this.getNumerator()*other.getDenominator();
+                num -= other.getNumerator()*this.getDenominator();
+		int denom = this.getDenominator() * other.getDenominator();
+		return new Fraction(num, denom);
+	}
+
+	public Fraction divide(Fraction other) {
+		int num = this.getNumerator() * other.getDenominator(); 
+		int denom = this.getDenominator() * other.getNumerator();
+		return new Fraction(num, denom);
+	}
+
+
 	private int GreatestCommonDivisor(int a, int b) {
 		/* finds GreatestCommonDivisor by Euclid's method
 		   http://en.wikipedia.org/wiki/Greatest_common_divisor#Using_Euclid.27s_algorithm
