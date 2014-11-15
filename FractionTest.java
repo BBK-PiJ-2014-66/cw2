@@ -1,7 +1,7 @@
 /*
  * Birbeck MSc Computer Science PiJ Coursework Two
- * author Oliver S. Smart
- * date from 15 Nov 2014
+ * author: Oliver S. Smart
+ * date: from 15 Nov 2014
  *  
  * Based on:
  * "Created by keith for the second coursework assignment."
@@ -31,7 +31,7 @@ public class FractionTest {
 		boolean testPass;
 		String DescribeTest;
 		
-		DescribeTest = "That 1/0 should throw an IllegalArgumentException exception";
+		DescribeTest = "Divide by zero: that 1/0 should throw an IllegalArgumentException exception";
                 try {
 			new Fraction(1,0); 
 			testPass = false;
@@ -40,28 +40,32 @@ public class FractionTest {
 		}
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "That multiplying 1/2 by 3/5 gives 3/10";
-               	testPass = (new Fraction(1,2).multiply(new Fraction(3,5))).equals(new Fraction(3,10)); 
-		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
-
-		DescribeTest = "That 1/2 .equals 1/2";
+		DescribeTest = ".equal method: that 1/2 .equals 1/2";
 		testPass =  (new Fraction(1,2).equals(new Fraction(1,2)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "That 1/2 .equals 3/6";
+		DescribeTest = ".equal method: that 1/2 equals 3/6";
 		testPass =  (new Fraction(1,2).equals(new Fraction(3,6)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "That -1/2 .equals 1/-2";
+		DescribeTest = ".equal method: that -1/2 equals 1/-2";
 		testPass =  (new Fraction(-1,2).equals(new Fraction(1,-2)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "That -1/-2 .equals 1/2";
+		DescribeTest = ".equal method: that -1/-2 equals 1/2";
 		testPass =  (new Fraction(-1,-2).equals(new Fraction(1,2)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "That 4/-8 does not .equals 1/2";
+		DescribeTest = ".equal method: that 4/-8 does not equal 1/2";
 		testPass =  !(new Fraction(4,-8).equals(new Fraction(1,2)));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = "Multiply: that multiplying 1/2 by 3/5 gives 3/10";
+               	testPass = (new Fraction(1,2).multiply(new Fraction(3,5))).equals(new Fraction(3,10)); 
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = "Divide: that (2/9) / (3/5) gives 10/27";
+               	testPass = (new Fraction(2,9).divide(new Fraction(3,5))).equals(new Fraction(10,27)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
 		DescribeTest = "Add: that 1/2 + 1/4 gives 3/4";
@@ -76,9 +80,6 @@ public class FractionTest {
                	testPass = (new Fraction(2,9).subtract(new Fraction(3,5))).equals(new Fraction(-17,45)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "Divide: that (2/9) / (3/5) gives 10/27";
-               	testPass = (new Fraction(2,9).divide(new Fraction(3,5))).equals(new Fraction(10,27)); 
-		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
 		DescribeTest = "AbsValue: that absValue(-7/9) = 7/9";
 		testPass = (new Fraction(-7,9).AbsValue().equals(new Fraction(7,9)));

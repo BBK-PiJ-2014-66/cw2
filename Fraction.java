@@ -1,7 +1,7 @@
 /*
  * Birbeck MSc Computer Science PiJ Coursework Two
- * author Oliver S. Smart
- * date from 15 Nov 2014
+ * author: Oliver S. Smart
+ * date: from 15 Nov 2014
  *  
  * Based on:
  * "Created by keith for the second coursework assignment."
