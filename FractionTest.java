@@ -88,6 +88,14 @@ public class FractionTest {
 		testPass = (new Fraction(7,9).Negate().equals(new Fraction(-7,9)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
+		DescribeTest = ".toString(): that (6/5).toString() is equal to \"6/5\" ";
+		testPass =  (new Fraction(6,5).toString().equals("6/5"));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = ".toString(): that (6/1).toString() is equal to \"6\" ";
+		testPass =  (new Fraction(6,1).toString().equals("6"));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
 
 		if (beVerbose) {
 			if (numbFails==0) {

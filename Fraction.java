@@ -23,7 +23,11 @@ public class Fraction {
 
 	@Override
 	public String toString() {
-		return "" + getNumerator() + '/' + getDenominator();
+		String resultStr = "" + getNumerator();
+		if (getDenominator() != 1) {	
+			resultStr += "/" + getDenominator();
+		} 
+		return resultStr;
 	}
 
 	public int getNumerator() {
