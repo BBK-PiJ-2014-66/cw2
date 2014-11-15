@@ -46,6 +46,8 @@ public class FractionCalculator {
 
 	public void evaluate( String inputString) {
 		System.out.println("debug call to evaluate with inputString =\"" + inputString + "\"");
+		if (inputString.equals("quit")) 
+			quitProgram = true;
 	}
 
 	public static void simpleTests( boolean beVerbose) {
@@ -54,5 +56,6 @@ public class FractionCalculator {
 		FractionCalculator testFracCalc = new FractionCalculator();
 
 		testFracCalc.evaluate("quit");
+		System.out.println("debug quitProgram = " + testFracCalc.quitProgram);
 	}
 }
