@@ -18,7 +18,7 @@ public class Fraction {
 			// this should use exceptions
 			return;
 		}
-		int gcd = myGcd(num, denom);
+		int gcd = GreatestCommonDivisor(num, denom);
 		setNumerator(num / gcd);
 		setDenominator(denom / gcd);
 	}
@@ -75,7 +75,10 @@ public class Fraction {
 		return new Fraction(num, denom);
 	}
 
-	private int myGcd(int a, int b) {
+	private int GreatestCommonDivisor(int a, int b) {
+		/* finds GreatestCommonDivisor by Euclid's method
+		   http://en.wikipedia.org/wiki/Greatest_common_divisor#Using_Euclid.27s_algorithm
+                 */
 		while (b != 0) {
 			int t = b;
 			b = a % b;
