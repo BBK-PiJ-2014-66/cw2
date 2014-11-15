@@ -1,5 +1,12 @@
-/**
- * Created by keith for the second coursework assignment.
+/*
+ * Birbeck MSc Computer Science PiJ Coursework Two
+ * author Oliver S. Smart
+ * date from 15 Nov 2014
+ *  
+ * Based on:
+ * "Created by keith for the second coursework assignment."
+ *
+ * runs test on the Fraction class.
  */
 public class FractionTest {
     public static void main(String[] args) {
