@@ -34,6 +34,7 @@
 public class FractionCalculator {
 	private String outputString;
 	private boolean quitProgram;
+	private boolean foundError;
 	private Fraction valueInCalculator;
 	private char rememberedOperation;
 
@@ -45,14 +46,30 @@ public class FractionCalculator {
 
 	public FractionCalculator() {
 		valueInCalculator = new Fraction(0, 1);
-		outputString = null;
-		rememberedOperation = NONE;
 		quitProgram = false;
+		foundError = false;
+		outputString = ""; // avoid null because want to use .equals
+		rememberedOperation = NONE;
 	}
+
+	public String outputString() {
+		return outputString;
+	}
+
+	public boolean quitProgram() {
+		return quitProgram;
+	}
+
+	public boolean foundError() {
+		return foundError;
+	}
+
 
 	public void process( String inputString) {
 		System.out.println("debug call to process with inputString =\"" + inputString + "\"");
 		if (inputString.equals("quit")) 
 			quitProgram = true;
 	}
+	
+	
 }
