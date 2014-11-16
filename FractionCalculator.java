@@ -88,7 +88,10 @@ public class FractionCalculator {
 			} else {
 				 unRecognized(word);
 			}
-			if (foundError || quitProgram) return;
+			if (foundError) 
+				resetCalculator();
+			if (foundError || quitProgram) 
+				return;
 		}
 		return;
 	}
@@ -102,7 +105,6 @@ public class FractionCalculator {
 				outputString = "\nERROR you have input two operators: ";	
 				outputString += rememberedOperation + " and ";
 				outputString += word + ". ";
-				outputString += resetMessage();
 				foundError = true;
 			}
 			rememberedOperation = word;
@@ -121,7 +123,6 @@ public class FractionCalculator {
 			// denominator not allowed to be zero
 			if (denominator== 0) {
 				outputString = "\nERROR you have specified a fraction " + word + " with a zero denominator.";	
-				outputString += resetMessage();
 				foundError = true;
 			} else {
 				// use a separate function to actually deal with the fraction as need to do same will whole number
@@ -137,6 +138,11 @@ public class FractionCalculator {
 			if (rememberedOperation.equals(MULTIPLY)) {
 				valueInCalculator = valueInCalculator.multiply(inFraction);
 			} else if (rememberedOperation.equals(DIVISION)) {
+				if (inFraction.equals(new Fraction(0,1)) ) {
+					outputString = "\nERROR you cannot divide by zero.";	
+					foundError = true;
+					return;
+				}
                                 valueInCalculator = valueInCalculator.divide(inFraction);
                         } else if (rememberedOperation.equals(ADDITION)) {
                                 valueInCalculator = valueInCalculator.add(inFraction);
@@ -176,8 +182,10 @@ public class FractionCalculator {
 	private void unRecognized( String word) {
 	}
 
-	private String resetMessage() {
-		return "\n\tResetting calculator to its initial state (no operator and 0 as value)";
+	private void resetCalculator() {
+		valueInCalculator = new Fraction(0, 1);
+		rememberedOperation = NONE;
+		outputString += "\n\tResetting calculator to its initial state (no operator and 0 as value)";
 	}
 
 }
