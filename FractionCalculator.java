@@ -169,6 +169,10 @@ public class FractionCalculator {
 	}
 
 	private boolean absProcess( String word) {
+		if (word.toLowerCase().matches("^a$|^ab$|^abs$")) {
+			valueInCalculator = valueInCalculator.absValue();	
+			return true;
+		}
 		return false;
 	}
 
