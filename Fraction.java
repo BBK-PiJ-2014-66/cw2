@@ -16,7 +16,7 @@ public class Fraction {
 		if (denom == 0) {
 			throw new IllegalArgumentException("Invalid fraction with denominator 0.");
 		}
-		int gcd = GreatestCommonDivisor(num, denom);
+		int gcd = greatestCommonDivisor(num, denom);
 		num = num/gcd;
 		denom = denom/gcd;
 		if (denom < 0) { // do not allow negative denom
@@ -102,20 +102,20 @@ public class Fraction {
 		return new Fraction(num, denom);
 	}
 
-	public Fraction AbsValue() {
+	public Fraction absValue() {
                 int num = Math.abs(this.getNumerator());
                 int denom =  Math.abs(this.getDenominator());
                 return new Fraction(num, denom);
         }
 
-	public Fraction Negate() {
+	public Fraction negate() {
                 int num =  -this.getNumerator();
                 int denom =  this.getDenominator();
                 return new Fraction(num, denom);
         }
 
-	private int GreatestCommonDivisor(int a, int b) {
-		/* finds GreatestCommonDivisor by Euclid's method
+	private int greatestCommonDivisor(int a, int b) {
+		/* finds greatest common divisor by Euclid's method
 		   http://en.wikipedia.org/wiki/Greatest_common_divisor#Using_Euclid.27s_algorithm
                  */
 		while (b != 0) {

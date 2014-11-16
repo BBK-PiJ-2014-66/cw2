@@ -90,12 +90,12 @@ public class FractionTest {
                	testPass = (new Fraction(2,9).subtract(new Fraction(3,5))).equals(new Fraction(-17,45)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "AbsValue: that absValue(-7/9) = 7/9";
-		testPass = (new Fraction(-7,9).AbsValue().equals(new Fraction(7,9)));
+		DescribeTest = "absValue: that absValue(-7/9) = 7/9";
+		testPass = (new Fraction(-7,9).absValue().equals(new Fraction(7,9)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-		DescribeTest = "Negate: that Negate(7/9) = -7/9";
-		testPass = (new Fraction(7,9).Negate().equals(new Fraction(-7,9)));
+		DescribeTest = "negate: that negate(7/9) = -7/9";
+		testPass = (new Fraction(7,9).negate().equals(new Fraction(-7,9)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
 		DescribeTest = ".toString(): that (6/5).toString() is equal to \"6/5\" ";
