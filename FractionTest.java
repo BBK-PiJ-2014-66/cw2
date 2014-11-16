@@ -23,8 +23,9 @@ public class FractionTest {
 	}
  	/* run a series of tests. If beVerbose set true give pass output
 	   but normally just output errors. 
-	   At end if any error has been found throw an assert failure */
-	public static void simpleAssertTests(boolean beVerbose) {
+	   At end if any error has been found throw an assert failure
+           or return false */
+	public static boolean simpleAssertTests(boolean beVerbose) {
 		if (beVerbose) 
 			 System.out.println("FractionTest tests verbose output:");
 		int numbFails = 0;
@@ -98,17 +99,14 @@ public class FractionTest {
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
 
-		if (beVerbose) {
-			if (numbFails==0) {
-				System.out.println("FractionTest: All tests pass");
-			} else {
-				System.out.println("FractionTest: " + numbFails + " tests FAIL.");
-			}
+		if (numbFails==0) {
+			if (beVerbose) System.out.println("FractionTest: All tests pass");
+			return true;
+		} else {
+			if (beVerbose) System.out.println("FractionTest: " + numbFails + " tests FAIL.");
+			assert (false) : "FractionTest failed "+ numbFails + " tests";
+			return false;
 		}
-		assert (numbFails==0) : "FractionTest failed "+ numbFails + " tests";
-
-
- 
 	}
 	private static int likeAssert( boolean testPass, String describeTest, boolean beVerbose) {
 		if (!testPass) {
