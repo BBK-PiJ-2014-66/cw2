@@ -11,51 +11,48 @@
  * it would be more elegant to remember both. Also want a clean
  * way to return after user has asked for a quit.
  * 
- * So use object variables to 
- *  - give access to the "Value in calculator" fraction
- *  - give access to any error message on an error (null means success) 
- *  - give access to a variable that says when user wants to quit
- *  - remember the complete state (including "remember operation")
- *    between different lines.
+ * Have a void "process" object method (rather than "evaluate") this
+ * will take the user user input as inputString. 
  *
- * .evaluate method should then not perform any Input or Output at all.
+ * Use methods to access object variables to: 
+ *  - give access to output message outputString
+ *  - give access to a boolean quitProgram that says when user wants to quit
+ *  - give access to a boolean foundError. Useful for testing but not 
+ *    needed for actual operation.
+ * 
+ * Other object variables will remember the complete state (including 
+ * "remember operation") between different input lines. 
  *
- * This should enable better testing for instance checking that 
+ * Note there is no need for any public access to the actual resulting 
+ * fraction (but it would be easy to add).
  *
- * Also include the Testing method in the class but invoke it from
- * FractionCalculatorTest main. As the methods and tests has to be
- * developed in parallel then it make sense to do together.
+ * This approach should enable full testing for instance that entering "0/1"
+ * produces an error message. (The "evaluate" method described in the exercise 
+ * sheet involves direct printing of error message so precluding assert testing).
+ *
  */
 public class FractionCalculator {
-	private Fraction valueInCalculator;
-	private String errorMessage;
+	private String outputString;
 	private boolean quitProgram;
-	private String rememberedOperation;
+	private Fraction valueInCalculator;
+	private char rememberedOperation;
 
- 	private static final String MULTIPLY = "*";
-	private static final String DIVISION = "/";
-	private static final String ADDITION = "+";
-	private static final String SUBTRACT = "-";
+ 	private static final char MULTIPLY = '*';
+	private static final char DIVISION = '/';
+	private static final char ADDITION = '+';
+	private static final char SUBTRACT = '-';
+	private static final char NONE = 0;
 
-	FractionCalculator() {
+	public FractionCalculator() {
 		valueInCalculator = new Fraction(0, 1);
-		errorMessage = null;
-		rememberedOperation = null;
+		outputString = null;
+		rememberedOperation = NONE;
 		quitProgram = false;
 	}
 
-	public void evaluate( String inputString) {
-		System.out.println("debug call to evaluate with inputString =\"" + inputString + "\"");
+	public void process( String inputString) {
+		System.out.println("debug call to process with inputString =\"" + inputString + "\"");
 		if (inputString.equals("quit")) 
 			quitProgram = true;
-	}
-
-	public static void simpleTests( boolean beVerbose) {
-		if (beVerbose)
-                         System.out.println("FractionTestCalculator tests verbose output:");
-		FractionCalculator testFracCalc = new FractionCalculator();
-
-		testFracCalc.evaluate("quit");
-		System.out.println("debug quitProgram = " + testFracCalc.quitProgram);
 	}
 }
