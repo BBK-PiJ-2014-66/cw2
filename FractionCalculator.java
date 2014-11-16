@@ -160,6 +160,11 @@ public class FractionCalculator {
 	}
 
 	private boolean wholeNumberProcess( String word) {
+		if (word.matches("-?\\d+")) { // 0 or 1 - followed by one or more digits
+			int numerator = Integer.parseInt(word); 
+			dealWithFraction(  new Fraction( numerator, 1));	
+			return true;	
+		}
 		return false;
 	}
 

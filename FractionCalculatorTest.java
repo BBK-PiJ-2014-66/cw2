@@ -55,6 +55,12 @@ public class FractionCalculatorTest{
 		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
+		lineToProcess = "3 * 9";
+		DescribeTest = "Whole numbers: input of '" + lineToProcess + "' should give '27'. ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("27");
+		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "1/2+1/2";
 		DescribeTest = "Invalid input no space: input of '" + lineToProcess + "' should produce an ERROR. ";
