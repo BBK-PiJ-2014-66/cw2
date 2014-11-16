@@ -180,6 +180,8 @@ public class FractionCalculator {
 	}
 
 	private void unRecognized( String word) {
+		outputString = "\nERROR unrecognized input '" + word + "' cannot process this";	
+		foundError = true;
 	}
 
 	private void resetCalculator() {
