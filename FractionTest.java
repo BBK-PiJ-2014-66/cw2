@@ -126,10 +126,10 @@ public class FractionTest {
 	}
 	public static int likeAssert( boolean testPass, String describeTest, boolean beVerbose) {
 		if (!testPass) {
-			System.out.println("ERROR get FAIL for test \"" +  describeTest + "\".");
+			System.out.println("ERROR get FAIL for test \"" +  describeTest + "\".\n");
 			return 1;
 		} else if (beVerbose) {
-			System.out.println("test \"" +  describeTest + "\" passes.");
+			System.out.println("test \"" +  describeTest + "\" passes.\n");
 	 	}
 		return 0;
 	}
