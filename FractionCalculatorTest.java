@@ -27,12 +27,22 @@ public class FractionCalculatorTest{
 		String DescribeTest;
 		String lineToProcess; 
 
-		lineToProcess = " 1/2   +   1 ";
-		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"3/2\". ";
+		lineToProcess = " 1/2   +  -1/4 ";
+		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"1/4\". ";
 		testFracCalc.process(lineToProcess);
-		testPass = testFracCalc.outputString().equals("3/2");
+		testPass = testFracCalc.outputString().equals("1/4");
 		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+		lineToProcess = "1/2 - 3/4";
+		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"-1/4\". ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("-1/4");
+		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+
+
 
 		if (numbFails==0) {
 			if (beVerbose) System.out.println("FractionCalculatorTest: All tests pass");

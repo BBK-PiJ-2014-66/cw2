@@ -64,12 +64,10 @@ public class FractionCalculator {
 		return foundError;
 	}
 
-
 	public void process( String inputString) {
 		System.out.println("debug call to process with inputString =\"" + inputString + "\"");
-		String resetMessage = "Resetting calculator to its initial state (no operator and 0)";
-		/* need to parse inputString as space separated "words"
-		   go write a DIY for loop to go through the String character by character
+		/* need to parse inputString as space separated "words".
+		   Could write a DIY for loop to go through the String character by character
 		   but I want a method like perl split to split a string into an array of words
                    on a regular expression. Use String .split(regex) useful page:
 		   http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
@@ -77,31 +75,110 @@ public class FractionCalculator {
 		String[] words = inputString.split("\\s+"); // one or more white space characters
 		for (int wc=0; wc < words.length; wc++) {
 			String word = words[wc];
-			if (word.length() == 0) 
-				continue; // ignore if zero length
 			System.out.println("debug word= \"" + word + "\"");
-
-			if ( word.equals(MULTIPLY) || word.equals(DIVISION) ||
-			     word.equals(ADDITION) || word.equals(SUBTRACT) ) {
-				System.out.println("debug got a operator " + word);
-				if (!rememberedOperation.equals(NONE)) {
-					outputString = "ERROR you have input two operators: ";	
-					outputString += rememberedOperation + " and ";
-					outputString += word + ". ";
-					outputString += resetMessage;
-					foundError = true;
-					return;
-				}
-				rememberedOperation = word;
-			} else if (word.matches("-?\\d+/\\d+")) { // 0 or 1 - followed by one or more digits, followed by /, ... and another number
-				System.out.println("debug got a fraction");
+			if ( (word.length() == 0)  || // ignore any blank words
+			     this.operatorProcess(word) || this.fractionProcess(word) ||
+			     this.wholeNumberProcess(word) || this.absProcess(word) ||
+		             this.negProcess(word) || this.clearProcess(word) ||
+			     this.quitProcess(word)) { // word has been recognized
+			} else {
+				 unRecognized(word);
 			}
-
-
+			if (foundError || quitProgram) return;
 		}
-		if (inputString.equals("quit")) 
-			quitProgram = true;
+		return;
+	}
 
+	private boolean operatorProcess( String word) {
+		/* recognizes an operators, process appropriately 
+		   and return true */
+		if ( word.equals(MULTIPLY) || word.equals(DIVISION) ||
+		     word.equals(ADDITION) || word.equals(SUBTRACT) ) {
+			System.out.println("debug got a operator " + word);
+			if (!rememberedOperation.equals(NONE)) {
+				outputString = "ERROR you have input two operators: ";	
+				outputString += rememberedOperation + " and ";
+				outputString += word + ". ";
+				outputString += resetMessage();
+				foundError = true;
+			}
+			rememberedOperation = word;
+			return true;
+		}
+		return false;
+	}
+
+	private boolean fractionProcess( String word) {
+		if (word.matches("-?\\d+/\\d+")) { // 0 or 1 - followed by one or more digits, followed by /, ... and another number
+			/* now want to get the numerator and denominator use a split on /
+			   to get array and Integer.parseInt to convert. I think the regular expression
+                           should mean that no errors can occur (famous last words */
+			int numerator = Integer.parseInt(word.split("/")[0]); 
+			int denominator = Integer.parseInt(word.split("/")[1]); 
+			System.out.println("debug got a fraction=" + word + " numerator=" + numerator + " denominator=" + denominator);
+			// denominator not allowed to be zero
+			if (denominator== 0) {
+				outputString = "ERROR you have specified a fraction " + word + " with a zero denominator.";	
+				outputString += resetMessage();
+				foundError = true;
+			} else {
+				// use a separate function to actually deal with the fraction as need to do same will whole number
+				dealWithFraction(  new Fraction( numerator, denominator));	
+			}
+			return true;	
+		}
+		return false;
+	}
+	private void dealWithFraction( Fraction inFraction) {
+		if (!rememberedOperation.equals(NONE)) {
+			// apply operator
+			System.out.println("debug apply operator " + rememberedOperation + " to fractions " +
+				 valueInCalculator.toString() + " and " +  inFraction.toString());
+			if (rememberedOperation.equals(MULTIPLY)) {
+				valueInCalculator = valueInCalculator.multiply(inFraction);
+			} else if (rememberedOperation.equals(DIVISION)) {
+                                valueInCalculator = valueInCalculator.divide(inFraction);
+                        } else if (rememberedOperation.equals(ADDITION)) {
+                                valueInCalculator = valueInCalculator.add(inFraction);
+                        } else if (rememberedOperation.equals(SUBTRACT)) {
+                                valueInCalculator = valueInCalculator.subtract(inFraction);
+                        } else {
+				assert (false) : "internal logic ERROR unrecognized rememberedOperation= " + rememberedOperation;
+			}
+			rememberedOperation = NONE; // clear operator
+			outputString = valueInCalculator.toString(); // string for user (maybe)
+		} else {
+			System.out.println("debug store fraction " + inFraction.toString());
+			valueInCalculator = inFraction;
+		}
 
 	}
+
+	private boolean wholeNumberProcess( String word) {
+		return false;
+	}
+
+	private boolean absProcess( String word) {
+		return false;
+	}
+
+	private boolean negProcess( String word) {
+		return false;
+	}
+
+	private boolean clearProcess( String word) {
+		return false;
+	}
+
+	private boolean quitProcess( String word) {
+		return false;
+	}
+
+	private void unRecognized( String word) {
+	}
+
+	private String resetMessage() {
+		return "Resetting calculator to its initial state (no operator and 0)";
+	}
+
 }
