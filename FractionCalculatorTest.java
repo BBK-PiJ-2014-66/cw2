@@ -63,12 +63,18 @@ public class FractionCalculatorTest{
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "-3 * 2/3 aB";
-		DescribeTest = "Abs: input of '" + lineToProcess + "' should give '-2'. ";
+		DescribeTest = "Abs: input of '" + lineToProcess + "' should give '2'. ";
 		testFracCalc.process(lineToProcess);
-		testPass = testFracCalc.outputString().equals("-2");
+		testPass = testFracCalc.outputString().equals("2");
 		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
+		lineToProcess = "3/7 N";
+		DescribeTest = "Neg: input of '" + lineToProcess + "' should give '-3/7'. ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("-3/7");
+		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "1/2+1/2";
 		DescribeTest = "Invalid input no space: input of '" + lineToProcess + "' should produce an ERROR. ";

@@ -93,6 +93,8 @@ public class FractionCalculator {
 			if (foundError || quitProgram) 
 				return;
 		}
+		// normally return string of the value in the calculator
+		outputString = valueInCalculator.toString(); 
 		return;
 	}
 
@@ -152,7 +154,6 @@ public class FractionCalculator {
 				assert (false) : "internal logic ERROR unrecognized rememberedOperation= " + rememberedOperation;
 			}
 			rememberedOperation = NONE; // clear operator
-			outputString = valueInCalculator.toString(); // string for user (maybe)
 		} else {
 			valueInCalculator = inFraction;
 		}
@@ -177,6 +178,10 @@ public class FractionCalculator {
 	}
 
 	private boolean negProcess( String word) {
+		if (word.toLowerCase().matches("^n$|^ne$|^neg$")) {
+			valueInCalculator = valueInCalculator.negate();	
+			return true;
+		}
 		return false;
 	}
 
