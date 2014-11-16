@@ -67,6 +67,21 @@ public class FractionCalculator {
 
 	public void process( String inputString) {
 		System.out.println("debug call to process with inputString =\"" + inputString + "\"");
+
+		/* need to parse inputString as space separated "words"
+		   go write a DIY for loop to go through the String character by character
+		   but I want a method like perl split to split a string into an array of words
+                   on a regular expression. Use String .split(regex) useful page:
+		   http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
+                   */
+
+		String[] words = inputString.split("\\s+"); // one or more white space characters
+		for (int wc=0; wc < words.length; wc++) {
+			String word = words[wc];
+			if (word.length() == 0) 
+				continue; // ignore if zero length
+			System.out.println("debug word= \"" + word + "\"");
+		}
 		if (inputString.equals("quit")) 
 			quitProgram = true;
 	}

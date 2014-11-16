@@ -27,7 +27,7 @@ public class FractionCalculatorTest{
 		String DescribeTest;
 		String lineToProcess; 
 
-		lineToProcess = "1/2 + 1";
+		lineToProcess = " 1/2   +   1 ";
 		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"3/2\". ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("3/2");
