@@ -36,13 +36,13 @@ public class FractionCalculator {
 	private boolean quitProgram;
 	private boolean foundError;
 	private Fraction valueInCalculator;
-	private char rememberedOperation;
+	private String rememberedOperation;
 
- 	private static final char MULTIPLY = '*';
-	private static final char DIVISION = '/';
-	private static final char ADDITION = '+';
-	private static final char SUBTRACT = '-';
-	private static final char NONE = 0;
+ 	private static final String MULTIPLY = "*";
+	private static final String DIVISION = "/";
+	private static final String ADDITION = "+";
+	private static final String SUBTRACT = "-";
+	private static final String NONE = "";
 
 	public FractionCalculator() {
 		valueInCalculator = new Fraction(0, 1);
@@ -67,24 +67,41 @@ public class FractionCalculator {
 
 	public void process( String inputString) {
 		System.out.println("debug call to process with inputString =\"" + inputString + "\"");
-
+		String resetMessage = "Resetting calculator to its initial state (no operator and 0)";
 		/* need to parse inputString as space separated "words"
 		   go write a DIY for loop to go through the String character by character
 		   but I want a method like perl split to split a string into an array of words
                    on a regular expression. Use String .split(regex) useful page:
 		   http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
                    */
-
 		String[] words = inputString.split("\\s+"); // one or more white space characters
 		for (int wc=0; wc < words.length; wc++) {
 			String word = words[wc];
 			if (word.length() == 0) 
 				continue; // ignore if zero length
 			System.out.println("debug word= \"" + word + "\"");
+
+			if ( word.equals(MULTIPLY) || word.equals(DIVISION) ||
+			     word.equals(ADDITION) || word.equals(SUBTRACT) ) {
+				System.out.println("debug got a operator " + word);
+				if (!rememberedOperation.equals(NONE)) {
+					outputString = "ERROR you have input two operators: ";	
+					outputString += rememberedOperation + " and ";
+					outputString += word + ". ";
+					outputString += resetMessage;
+					foundError = true;
+					return;
+				}
+				rememberedOperation = word;
+			} else if (word.matches("-?\\d+/\\d+")) { // 0 or 1 - followed by one or more digits, followed by /, ... and another number
+				System.out.println("debug got a fraction");
+			}
+
+
 		}
 		if (inputString.equals("quit")) 
 			quitProgram = true;
+
+
 	}
-	
-	
 }
