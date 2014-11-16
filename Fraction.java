@@ -17,8 +17,14 @@ public class Fraction {
 			throw new IllegalArgumentException("Invalid fraction with denominator 0.");
 		}
 		int gcd = GreatestCommonDivisor(num, denom);
-		setNumerator(num / gcd);
-		setDenominator(denom / gcd);
+		num = num/gcd;
+		denom = denom/gcd;
+		if (denom < 0) { // do not allow negative denom
+			num = -num;
+			denom = -denom;
+		}
+		setNumerator(num);
+		setDenominator(denom);
 	}
 
 	@Override

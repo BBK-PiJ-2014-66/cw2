@@ -69,6 +69,15 @@ public class FractionTest {
                	testPass = (new Fraction(2,9).divide(new Fraction(3,5))).equals(new Fraction(10,27)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
+		DescribeTest = "Divide by zero: that (1/1) / (0/1) should throw an IllegalArgumentException exception";
+                try {
+			new Fraction(1,1).divide(new Fraction(0,1));
+			testPass = false;
+		} catch (IllegalArgumentException e) { 
+			testPass = true; 
+		}
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
 		DescribeTest = "Add: that 1/2 + 1/4 gives 3/4";
                	testPass = (new Fraction(1,2).add(new Fraction(1,4))).equals(new Fraction(3,4)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
@@ -95,6 +104,14 @@ public class FractionTest {
 
 		DescribeTest = ".toString(): that (6/1).toString() is equal to \"6\" ";
 		testPass =  (new Fraction(6,1).toString().equals("6"));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = ".toString(): that (-1/4).toString() is equal to \"-1/4\" ";
+		testPass =  (new Fraction(-1,4).toString().equals("-1/4"));
+		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
+
+		DescribeTest = ".toString(): that (1/-4).toString() is equal to \"-1/4\" ";
+		testPass =  (new Fraction(1,-4).toString().equals("-1/4"));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
 
