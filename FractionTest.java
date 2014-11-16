@@ -81,7 +81,6 @@ public class FractionTest {
                	testPass = (new Fraction(2,9).subtract(new Fraction(3,5))).equals(new Fraction(-17,45)); 
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
 
-
 		DescribeTest = "AbsValue: that absValue(-7/9) = 7/9";
 		testPass = (new Fraction(-7,9).AbsValue().equals(new Fraction(7,9)));
 		numbFails += likeAssert( testPass, DescribeTest, beVerbose);
@@ -108,9 +107,9 @@ public class FractionTest {
 			return false;
 		}
 	}
-	private static int likeAssert( boolean testPass, String describeTest, boolean beVerbose) {
+	public static int likeAssert( boolean testPass, String describeTest, boolean beVerbose) {
 		if (!testPass) {
-			System.out.println("ERROR FractionTest FAILS for test \"" +  describeTest + "\".");
+			System.out.println("ERROR get FAIL for test \"" +  describeTest + "\".");
 			return 1;
 		} else if (beVerbose) {
 			System.out.println("test \"" +  describeTest + "\" passes.");
