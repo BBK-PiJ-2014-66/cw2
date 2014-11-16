@@ -9,6 +9,10 @@
  */ 
 public class FractionCalculatorTest{
 	public static void main( String args[]) {
+		/* if assert is being used run the FractionTest to test Fraction
+                   as argument is false then non-verbose will be 
+                   silent unless there is an error */
+		assert FractionTest.simpleAssertTests(false) : "FractionTest failed";
 		simpleTests( true); // run in verbose mode
 	}
 
