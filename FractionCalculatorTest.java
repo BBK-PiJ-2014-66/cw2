@@ -27,6 +27,20 @@ public class FractionCalculatorTest{
 		String DescribeTest;
 		String lineToProcess; 
 
+		lineToProcess = "1/2 * 3/4";
+		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"3/8\". ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("3/8");
+		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+		lineToProcess = "1/2 / 3/4";
+		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"2/3\". ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("2/3");
+		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
 		lineToProcess = " 1/2   +  -1/4 ";
 		DescribeTest = "Simple parsing and operation: input of \"" + lineToProcess + "\" should give \"1/4\". ";
 		testFracCalc.process(lineToProcess);
@@ -41,8 +55,21 @@ public class FractionCalculatorTest{
 		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
+		lineToProcess = "1/0";
+		DescribeTest = "Entering an invalid fraction input of \"" + lineToProcess + "\" should produce an ERROR. ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.foundError();
+		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 
+
+		lineToProcess = "1/2 / 0/3";
+		DescribeTest = "Try to divide by zero \"" + lineToProcess + "\" should produce an ERROR. ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.foundError();
+		DescribeTest += "Actually \"" + testFracCalc.outputString() + "\" is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		if (numbFails==0) {
 			if (beVerbose) System.out.println("FractionCalculatorTest: All tests pass");

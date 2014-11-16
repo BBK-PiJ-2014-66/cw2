@@ -65,17 +65,21 @@ public class FractionCalculator {
 	}
 
 	public void process( String inputString) {
-		System.out.println("debug call to process with inputString =\"" + inputString + "\"");
 		/* need to parse inputString as space separated "words".
 		   Could write a DIY for loop to go through the String character by character
 		   but I want a method like perl split to split a string into an array of words
                    on a regular expression. Use String .split(regex) useful page:
 		   http://www.vogella.com/tutorials/JavaRegularExpressions/article.html
                    */
+		quitProgram = false;
+		foundError = false;
+		outputString = ""; 
+		/* uncomment following line if we want to have a calculator that does not carry 
+                   memory for current operation between lines (as in the exercise sheet) */ /*
+                rememberedOperation = NONE; */
 		String[] words = inputString.split("\\s+"); // one or more white space characters
 		for (int wc=0; wc < words.length; wc++) {
 			String word = words[wc];
-			System.out.println("debug word= \"" + word + "\"");
 			if ( (word.length() == 0)  || // ignore any blank words
 			     this.operatorProcess(word) || this.fractionProcess(word) ||
 			     this.wholeNumberProcess(word) || this.absProcess(word) ||
@@ -94,9 +98,8 @@ public class FractionCalculator {
 		   and return true */
 		if ( word.equals(MULTIPLY) || word.equals(DIVISION) ||
 		     word.equals(ADDITION) || word.equals(SUBTRACT) ) {
-			System.out.println("debug got a operator " + word);
 			if (!rememberedOperation.equals(NONE)) {
-				outputString = "ERROR you have input two operators: ";	
+				outputString = "\nERROR you have input two operators: ";	
 				outputString += rememberedOperation + " and ";
 				outputString += word + ". ";
 				outputString += resetMessage();
@@ -115,10 +118,9 @@ public class FractionCalculator {
                            should mean that no errors can occur (famous last words */
 			int numerator = Integer.parseInt(word.split("/")[0]); 
 			int denominator = Integer.parseInt(word.split("/")[1]); 
-			System.out.println("debug got a fraction=" + word + " numerator=" + numerator + " denominator=" + denominator);
 			// denominator not allowed to be zero
 			if (denominator== 0) {
-				outputString = "ERROR you have specified a fraction " + word + " with a zero denominator.";	
+				outputString = "\nERROR you have specified a fraction " + word + " with a zero denominator.";	
 				outputString += resetMessage();
 				foundError = true;
 			} else {
@@ -132,8 +134,6 @@ public class FractionCalculator {
 	private void dealWithFraction( Fraction inFraction) {
 		if (!rememberedOperation.equals(NONE)) {
 			// apply operator
-			System.out.println("debug apply operator " + rememberedOperation + " to fractions " +
-				 valueInCalculator.toString() + " and " +  inFraction.toString());
 			if (rememberedOperation.equals(MULTIPLY)) {
 				valueInCalculator = valueInCalculator.multiply(inFraction);
 			} else if (rememberedOperation.equals(DIVISION)) {
@@ -148,7 +148,6 @@ public class FractionCalculator {
 			rememberedOperation = NONE; // clear operator
 			outputString = valueInCalculator.toString(); // string for user (maybe)
 		} else {
-			System.out.println("debug store fraction " + inFraction.toString());
 			valueInCalculator = inFraction;
 		}
 
@@ -178,7 +177,7 @@ public class FractionCalculator {
 	}
 
 	private String resetMessage() {
-		return "Resetting calculator to its initial state (no operator and 0)";
+		return "\n\tResetting calculator to its initial state (no operator and 0 as value)";
 	}
 
 }
