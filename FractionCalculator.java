@@ -44,6 +44,29 @@ public class FractionCalculator {
 	private static final String SUBTRACT = "-";
 	private static final String NONE = "";
 
+
+	public static void main( String args[]) {
+		System.out.println("Simple text-based calculator to compute with fractions.\n" +
+			"author: Oliver S. Smart");
+		FractionCalculator myFractCalc = new FractionCalculator();
+		String prompt = " >>> ";
+		String currentPrompt = "0" + prompt;
+		while (true) {
+			System.out.print(currentPrompt);
+			String userInput = System.console().readLine();
+			myFractCalc.process(userInput);
+			if (myFractCalc.quitProgram()) break;
+			if (myFractCalc.foundError()) {
+				System.out.println(myFractCalc.outputString());
+				currentPrompt = "0" + prompt;
+			} else {
+				currentPrompt = myFractCalc.outputString() + prompt;	
+				
+			}
+		}
+		System.out.println("Goodbye"); 
+	}
+
 	public FractionCalculator() {
 		valueInCalculator = new Fraction(0, 1);
 		quitProgram = false;
@@ -85,8 +108,11 @@ public class FractionCalculator {
 			if (foundError || quitProgram) 
 				return;
 		}
-		// normally return string of the value in the calculator
+		/* normally return the string of the value in the calculator 
+                   and any current operator */
 		outputString = valueInCalculator.toString(); 
+		if (!rememberedOperation.equals(NONE)) 
+			outputString += " " + rememberedOperation;
 		return;
 	}
 
