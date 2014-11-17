@@ -202,7 +202,7 @@ public class FractionCalculator {
 
 	private boolean quitProcess( String word) {
 		if (matchCaseInsensitiveAbbrev("quit",word)) {
-			System.out.println("debug need to write code for quit ....");
+			quitProgram = true;
 			return true;
 		}
 		return false;
