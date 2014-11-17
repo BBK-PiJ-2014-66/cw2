@@ -90,7 +90,7 @@ public class FractionCalculator {
 		return;
 	}
 
-	public void processAWord( String word) {
+	private void processAWord( String word) {
 		if (word.length() == 0) return; // ignore any blank words
 		if (this.operatorProcess(word)) return;
 		if (this.fractionProcess(word)) return;
