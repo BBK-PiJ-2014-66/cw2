@@ -91,16 +91,17 @@ public class FractionCalculator {
 	}
 
 	private void processAWord( String word) {
-		if (word.length() == 0) return; // ignore any blank words
-		if (this.operatorProcess(word)) return;
-		if (this.fractionProcess(word)) return;
-		if (this.wholeNumberProcess(word)) return;
-		if (this.absProcess(word)) return;
-		if (this.negProcess(word)) return;
-		if (this.clearProcess(word)) return;
-		if (this.quitProcess(word)) return;
-		this.unRecognized(word);
-		return; 
+		if (word.length() == 0) { // ignore any blank words
+		} else if (this.operatorProcess(word)) {
+		} else if (this.fractionProcess(word)) {
+		} else if (this.wholeNumberProcess(word)) {
+		} else if (this.absProcess(word)) {
+		} else if (this.negProcess(word)) {
+		} else if (this.clearProcess(word)) {
+		} else if (this.quitProcess(word)) {
+		} else {
+			this.unRecognized(word);
+		}
 	}
 
 	private boolean operatorProcess( String word) {
