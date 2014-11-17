@@ -170,7 +170,7 @@ public class FractionCalculator {
 	}
 
 	private boolean absProcess( String word) {
-		if (word.toLowerCase().matches("^a$|^ab$|^abs$")) {
+		if (matchCaseInsensitiveAbbrev("abs",word)) {
 			valueInCalculator = valueInCalculator.absValue();	
 			return true;
 		}
@@ -178,7 +178,7 @@ public class FractionCalculator {
 	}
 
 	private boolean negProcess( String word) {
-		if (word.toLowerCase().matches("^n$|^ne$|^neg$")) {
+		if (matchCaseInsensitiveAbbrev("neg",word)) {
 			valueInCalculator = valueInCalculator.negate();	
 			return true;
 		}
@@ -186,10 +186,18 @@ public class FractionCalculator {
 	}
 
 	private boolean clearProcess( String word) {
+		if (matchCaseInsensitiveAbbrev("clear",word)) {
+			System.out.println("debug need to write code for clear ....");
+			return true;
+		}
 		return false;
 	}
 
 	private boolean quitProcess( String word) {
+		if (matchCaseInsensitiveAbbrev("clear",word)) {
+			System.out.println("debug need to write code for quit ....");
+			return true;
+		}
 		return false;
 	}
 
@@ -202,6 +210,22 @@ public class FractionCalculator {
 		valueInCalculator = new Fraction(0, 1);
 		rememberedOperation = NONE;
 		outputString += "\n\tResetting calculator to its initial state (no operator and 0 as value)";
+	}
+
+	private static boolean matchCaseInsensitiveAbbrev( String key,  String word) {
+		/* Returns true if word matches key (no regex allowed). 
+		 * The match is case insensitive and abbreviation is allowed.
+		 * So if key="abs" then get match for words:
+                 * "A", "a", "AB", "aB", "Ab", ...                            
+                 */
+		key = key.toLowerCase();
+		word = word.toLowerCase();
+		if (word.length() < key.length()) {
+			key = key.substring(0,word.length());
+		}
+		if (word.equals(key))
+			return true;
+		return false;
 	}
 
 }
