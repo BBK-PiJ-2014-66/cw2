@@ -79,15 +79,7 @@ public class FractionCalculator {
                 rememberedOperation = NONE; */
 		String[] words = inputString.split("\\s+"); // one or more white space characters
 		for (int wc=0; wc < words.length; wc++) {
-			String word = words[wc];
-			if ( (word.length() == 0)  || // ignore any blank words
-			     this.operatorProcess(word) || this.fractionProcess(word) ||
-			     this.wholeNumberProcess(word) || this.absProcess(word) ||
-		             this.negProcess(word) || this.clearProcess(word) ||
-			     this.quitProcess(word)) { // word has been recognized
-			} else {
-				 unRecognized(word);
-			}
+			this.processAWord(words[wc]);
 			if (foundError) 
 				resetCalculator();
 			if (foundError || quitProgram) 
@@ -96,6 +88,19 @@ public class FractionCalculator {
 		// normally return string of the value in the calculator
 		outputString = valueInCalculator.toString(); 
 		return;
+	}
+
+	public void processAWord( String word) {
+		if (word.length() == 0) return; // ignore any blank words
+		if (this.operatorProcess(word)) return;
+		if (this.fractionProcess(word)) return;
+		if (this.wholeNumberProcess(word)) return;
+		if (this.absProcess(word)) return;
+		if (this.negProcess(word)) return;
+		if (this.clearProcess(word)) return;
+		if (this.quitProcess(word)) return;
+		this.unRecognized(word);
+		return; 
 	}
 
 	private boolean operatorProcess( String word) {
@@ -194,7 +199,7 @@ public class FractionCalculator {
 	}
 
 	private boolean quitProcess( String word) {
-		if (matchCaseInsensitiveAbbrev("clear",word)) {
+		if (matchCaseInsensitiveAbbrev("quit",word)) {
 			System.out.println("debug need to write code for quit ....");
 			return true;
 		}
