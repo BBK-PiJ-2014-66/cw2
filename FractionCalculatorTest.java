@@ -76,6 +76,15 @@ public class FractionCalculatorTest{
 		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
+
+		lineToProcess = "1/2 - Cl  9 * 7";
+		DescribeTest = "Clear: input of '" + lineToProcess + "' should give '63'. ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("63");
+		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+
 		lineToProcess = "1/2+1/2";
 		DescribeTest = "Invalid input no space: input of '" + lineToProcess + "' should produce an ERROR. ";
 		testFracCalc.process(lineToProcess);

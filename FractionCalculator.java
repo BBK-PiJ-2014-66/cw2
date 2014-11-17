@@ -193,7 +193,8 @@ public class FractionCalculator {
 
 	private boolean clearProcess( String word) {
 		if (matchCaseInsensitiveAbbrev("clear",word)) {
-			System.out.println("debug need to write code for clear ....");
+			valueInCalculator = new Fraction(0, 1);
+			rememberedOperation = NONE;
 			return true;
 		}
 		return false;
