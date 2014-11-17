@@ -31,56 +31,48 @@ public class FractionCalculatorTest{
 		DescribeTest = "Simple parsing and operation: input of '" + lineToProcess + "' should give '3/8'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("3/8");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "1/2 / 3/4";
 		DescribeTest = "Simple parsing and operation: input of '" + lineToProcess + "' should give '2/3'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("2/3");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = " 1/2   +  -1/4 ";
 		DescribeTest = "Simple parsing and operation: input of '" + lineToProcess + "' should give '1/4'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("1/4");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "1/2 - 3/4";
 		DescribeTest = "Simple parsing and operation: input of '" + lineToProcess + "' should give '-1/4'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("-1/4");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "3 * 9";
 		DescribeTest = "Whole numbers: input of '" + lineToProcess + "' should give '27'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("27");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "-3 * 2/3 aB";
 		DescribeTest = "Abs: input of '" + lineToProcess + "' should give '2'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("2");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "3/7 N";
 		DescribeTest = "Neg: input of '" + lineToProcess + "' should give '-3/7'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("-3/7");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "1/2 - Cl  9 * 7";
 		DescribeTest = "Clear: input of '" + lineToProcess + "' should give '63'. ";
 		testFracCalc.process(lineToProcess);
 		testPass = testFracCalc.outputString().equals("63");
-		DescribeTest += "Actually '" + testFracCalc.outputString() + "' is output.";
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "1/2 - quit 30 + 10";
