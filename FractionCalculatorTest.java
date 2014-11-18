@@ -51,6 +51,12 @@ public class FractionCalculatorTest{
 		testPass = testFracCalc.outputString().equals("-1/4");
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
+		lineToProcess = "-2/-3";
+		DescribeTest = "Handling fractions with -ve denominator: input of '" + lineToProcess + "' should give '2/3'. ";
+		testFracCalc.process(lineToProcess);
+		testPass = testFracCalc.outputString().equals("2/3");
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
 		lineToProcess = "3 * 9";
 		DescribeTest = "Whole numbers: input of '" + lineToProcess + "' should give '27'. ";
 		testFracCalc.process(lineToProcess);

@@ -100,13 +100,16 @@ public class FractionCalculator {
 		/* uncomment following line if we want to have a calculator that does not carry 
                    memory for current operation between lines (as in the exercise sheet) */ /*
                 rememberedOperation = NONE; */
-		String[] words = inputString.split("\\s+"); // one or more white space characters
-		for (int wc=0; wc < words.length; wc++) {
-			this.processAWord(words[wc]);
-			if (foundError) 
-				resetCalculator();
-			if (foundError || quitProgram) 
-				return;
+
+                if (inputString!=null) { // to protect against EOF (ctrl-D) entry
+			String[] words = inputString.split("\\s+"); // one or more white space characters
+			for (int wc=0; wc < words.length; wc++) {
+				this.processAWord(words[wc]);
+				if (foundError) 
+					resetCalculator();
+				if (foundError || quitProgram) 
+					return;
+			}
 		}
 		/* normally return the string of the value in the calculator 
                    and any current operator */
@@ -148,10 +151,15 @@ public class FractionCalculator {
 	}
 
 	private boolean fractionProcess( String word) {
-		if (word.matches("-?\\d+/\\d+")) { // 0 or 1 - followed by one or more digits, followed by /, ... and another number
+		/* regex in matches:
+                 * means a number followed by '/' followed by a number
+                 * where a number is 0 or 1 '-' followed by one or more digits  
+                 */
+		if (word.matches("-?\\d+/-?\\d+")) { 
 			/* now want to get the numerator and denominator use a split on /
-			   to get array and Integer.parseInt to convert. I think the regular expression
-                           should mean that no errors can occur (famous last words */
+			 * to get array and Integer.parseInt to convert. I think the regular expression
+                         *  should mean that no errors can occur (famous last words 
+                         */
 			int numerator = Integer.parseInt(word.split("/")[0]); 
 			int denominator = Integer.parseInt(word.split("/")[1]); 
 			// denominator not allowed to be zero
