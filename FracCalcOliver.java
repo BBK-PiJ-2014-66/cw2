@@ -25,8 +25,6 @@
  * Other object variables will remember the complete state (including 
  * "remember operation") between different input lines. 
  *
- * Note there is no need for any public access to the actual resulting 
- * fraction (but it would be easy to add).
  *
  * This approach should enable full testing for instance that entering "0/1"
  * produces an error message. (The "evaluate" method described in the exercise 
@@ -34,6 +32,8 @@
  *
  * AS WELL AS WORKING ON ITS OWN CLASS ADAPTED TO PROVIDE FUNCTIONALITY
  * FOR FractionCalculator evaluate METHOD 
+ * Because of this there is now a need to provide public access to the resulting 
+ * fraction!
  *
  */
 public class FracCalcOliver {
@@ -53,7 +53,7 @@ public class FracCalcOliver {
 	public static void main( String args[]) {
 		System.out.println("Simple text-based calculator to compute with fractions.\n" +
 			"author: Oliver S. Smart");
-		FractionCalculator myFractCalc = new FractionCalculator();
+		FracCalcOliver myFractCalc = new FracCalcOliver();
 		String prompt = " >>> ";
 		String currentPrompt = "0" + prompt;
 		while (true) {
@@ -90,6 +90,11 @@ public class FracCalcOliver {
 
 	public boolean foundError() {
 		return foundError;
+	}
+
+
+	public Fraction getFraction() {
+		return valueInCalculator;
 	}
 
 	public void process( String inputString) {
