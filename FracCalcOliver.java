@@ -3,6 +3,8 @@
  * author: Oliver S. Smart
  * date: from 15 Nov 2014
  *  
+ * OLIVER'S TAKE ON:
+ *
  * Simple text-based calculator to compute with fractions.
  *
  * Going to do something a bit-different from the exercise sheet.
@@ -30,8 +32,11 @@
  * produces an error message. (The "evaluate" method described in the exercise 
  * sheet involves direct printing of error message so precluding assert testing).
  *
+ * AS WELL AS WORKING ON ITS OWN CLASS ADAPTED TO PROVIDE FUNCTIONALITY
+ * FOR FractionCalculator evaluate METHOD 
+ *
  */
-public class FractionCalculator {
+public class FracCalcOliver {
 	private String outputString;
 	private boolean quitProgram;
 	private boolean foundError;
@@ -67,7 +72,7 @@ public class FractionCalculator {
 		System.out.println("Goodbye"); 
 	}
 
-	public FractionCalculator() {
+	public FracCalcOliver() {
 		valueInCalculator = new Fraction(0, 1);
 		quitProgram = false;
 		foundError = false;
