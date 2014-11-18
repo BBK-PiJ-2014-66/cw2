@@ -3,11 +3,11 @@
  * author: Oliver S. Smart
  * date: from 15 Nov 2014
  *  
- * Runs tests of FractionCalculator function and provides an 
+ * Runs tests of FracCalcOliver function and provides an 
  * assert type test.
  *  
  */ 
-public class FractionCalculatorTest{
+public class FracCalcOliverTest{
 	public static void main( String args[]) {
 		/* if assert is being used run the FractionTest to test Fraction
                    as argument is false then non-verbose will be 
@@ -18,9 +18,9 @@ public class FractionCalculatorTest{
 
 	public static boolean simpleTests( boolean beVerbose) {
 		if (beVerbose)
-                         System.out.println("FractionTestCalculator tests verbose output:");
+                         System.out.println("FracCalcOliverTest tests verbose output:");
 
-		FractionCalculator testFracCalc = new FractionCalculator();
+		FracCalcOliver testFracCalc = new FracCalcOliver();
 
 		int numbFails = 0;
 		boolean testPass;
@@ -117,11 +117,11 @@ public class FractionCalculatorTest{
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		if (numbFails==0) {
-			if (beVerbose) System.out.println("FractionCalculatorTest: All tests pass");
+			if (beVerbose) System.out.println("FracCalcOliverTest: All tests pass");
 			return true;
 		} else {
-			if (beVerbose) System.out.println("FractionCalculatorTest: " + numbFails + " tests FAIL.");
-			assert (false) : "FractionCalculatorTest failed "+ numbFails + " tests";
+			if (beVerbose) System.out.println("FracCalcOliverTest: " + numbFails + " tests FAIL.");
+			assert (false) : "FracCalcOliverTest failed "+ numbFails + " tests";
 			return false;
 		}
 
