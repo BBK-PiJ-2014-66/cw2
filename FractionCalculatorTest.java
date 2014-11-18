@@ -23,9 +23,18 @@ public class FractionCalculatorTest{
 		Fraction resultFraction;
 
 		lineToProcess = "1/2 - 3/4 * abs ";
-		DescribeTest = "Extended example table 1st line: '" + lineToProcess + "' should give '1/4'. ";
-		resultFraction = FractionCalculator.evaluate( initialFraction, "lineToProcess");	
+		DescribeTest = "Coursework 2 sheet 'Extended example' table 1st line: '" + lineToProcess + "' should give Fraction.equals 1/4. ";
+		resultFraction = FractionCalculator.evaluate( initialFraction, lineToProcess);	
 		testPass = resultFraction.equals("1/4");
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+
+
+		lineToProcess = " 1 - - 1";
+		DescribeTest = "Entering two operations: '" + lineToProcess + "' should result in an appropriate error message an null Fraction";
+		System.out.println("Now start test '"+ DescribeTest + "'");
+		resultFraction = FractionCalculator.evaluate( initialFraction, lineToProcess);	
+		testPass = (resultFraction == null);
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 		if (numbFails==0) {

@@ -13,7 +13,30 @@ public class FractionCalculator {
 		 * "fraction" must provide the only memory for the the calculator
                  * state in between line inputs
                  *
+		 *
+		 * N.B. this function will return null if any error is found 
+		 *      this function will exit the program if quit is entered
 		 */
-		return null;
+		Fraction retFraction = null; // return null if there is an error
+
+
+                // use my take on a fractional calculator
+		FracCalcOliver myFCO = new FracCalcOliver();
+
+		myFCO.process( ("" + fraction)); // supply input fraction as a String
+		myFCO.process(inputString); // then user line
+
+		if (myFCO.foundError()) { 
+			/* Print the "appropriate error message" mentioned on page 2 */
+			System.out.println(myFCO.outputString());
+		} else if (myFCO.quitProgram()) {
+			System.out.println("Goodbye");
+			System.exit(0); // terminate program with no error
+		} else {
+			System.out.println("debug need to write mechanism to get Fraction back from FracCalcOliver");
+			retFraction = new Fraction(0,1);
+		}
+
+		return retFraction;
 	}
 }
