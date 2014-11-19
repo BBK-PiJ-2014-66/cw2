@@ -11,6 +11,10 @@ public class FractionCalculatorTest{
 		simpleTests( true); // run in verbose mode
 	}
 
+	public static boolean simpleTestsNoVerbose() { // for assert tests
+		return simpleTests(false);  // non-verbose only printing errors.
+	} 
+
 	public static boolean simpleTests( boolean beVerbose) {
 		if (beVerbose)
                          System.out.println("FractionCalculator verbose output:");

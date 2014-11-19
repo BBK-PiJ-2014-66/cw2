@@ -41,6 +41,7 @@ public class FractionCalculator {
 	public static void main( String args[]) {
 		// if assert is being used test the classes used
 		assert FractionTest.simpleTestsNoVerbose() : "FractionTest failed";
+		assert FractionCalculatorTest.simpleTestsNoVerbose() : "FractionCalculatorTest failed";
 
 		launchBasicTextCalculator();
 	}
