@@ -43,11 +43,17 @@ public class FractionCalculator {
 		assert FractionTest.simpleTestsNoVerbose() : "FractionTest failed";
 		assert FractionCalculatorTest.simpleTestsNoVerbose() : "FractionCalculatorTest failed";
 
-		launchBasicTextCalculator();
+		if ((args.length > 0) && args[0].equals("-a")) {
+			FracCalcOliver.launch();
+		} else {
+			launchBasicTextCalculator();
+		}
 	}
 	public static void launchBasicTextCalculator() {
 		System.out.println("Simple text-based calculator to compute with fractions.\n" +
 			"\tAuthor: Oliver S. Smart\n\n" +
+			"\tN.B. if you want to run an alternative more-advanced\n" +
+			"\tversion restart using the command line option -a\n\n" +
 			"\tUsage: introduce space deliminated commands like:\n" +
 			"\t  5/7 * 31/11 - 2 neg\n" +
 			"\tyou can use fractions or whole numbers or one of the commands:\n" +

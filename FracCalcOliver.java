@@ -49,10 +49,9 @@ public class FracCalcOliver {
 	private static final String SUBTRACT = "-";
 	private static final String NONE = "";
 
-
-	public static void main( String args[]) {
-		System.out.println("Simple text-based calculator to compute with fractions.\n" +
-			"author: Oliver S. Smart");
+	public static void launch() {
+		System.out.println("More-advanced text-based calculator to compute with fractions.\n" +
+			"Author: Oliver S. Smart\n");
 		FracCalcOliver myFractCalc = new FracCalcOliver();
 		String prompt = " >>> ";
 		String currentPrompt = "0" + prompt;
