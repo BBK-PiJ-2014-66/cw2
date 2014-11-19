@@ -37,4 +37,30 @@ public class FractionCalculator {
 		quitProgram = myFCO.quitProgram();
 		return myFCO.getFraction();
 	}
+
+	public static void main( String args[]) {
+		launchBasicTextCalculator();
+	}
+	public static void launchBasicTextCalculator() {
+		System.out.println("Simple text-based calculator to compute with fractions.\n" +
+			"author: Oliver S. Smart");
+		Fraction initialFraction = new Fraction(0,1);
+		Fraction currentFraction = initialFraction;
+		FractionCalculator myFractCalc = new FractionCalculator();
+		while (true) {
+			System.out.print("Enter command: ");
+			String userInput = System.console().readLine();
+			Fraction resultFraction = myFractCalc.evaluate( currentFraction, userInput);
+			if (myFractCalc.quitProgram()) break;
+			if (myFractCalc.foundError()) {
+				currentFraction = initialFraction;
+			} else {
+				System.out.println("Result is " + resultFraction);
+				currentFraction = resultFraction;
+			}
+		}
+		System.out.println("Goodbye"); 
+	}
+
+
 }
