@@ -43,7 +43,13 @@ public class FractionCalculator {
 	}
 	public static void launchBasicTextCalculator() {
 		System.out.println("Simple text-based calculator to compute with fractions.\n" +
-			"author: Oliver S. Smart");
+			"\tAuthor: Oliver S. Smart\n\n" +
+			"\tUsage: introduce space deliminated commands like:\n" +
+			"\t  5/7 * 31/11 - 2 neg\n" +
+			"\tyou can use fractions or whole numbers or one of the commands:\n" +
+			"\t  abs neg clear quit               (abbreviations allowed).\n" +
+			"\tThe result of the fraction is held in memory and can be used as the start of the next calculation.\n" +
+			"\tTo stop the program enter quit or Ctrl-D.\n");
 		Fraction initialFraction = new Fraction(0,1);
 		Fraction currentFraction = initialFraction;
 		FractionCalculator myFractCalc = new FractionCalculator();
