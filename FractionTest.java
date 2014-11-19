@@ -19,13 +19,16 @@
  */
 public class FractionTest {
 	public static void main(String[] args) {
-		simpleAssertTests(true);  // run verbose
+		simpleTests(true);  // run verbose
 	}
+	public static boolean simpleTestsNoVerbose() { // for assert tests
+		return simpleTests(false);  // non-verbose only printing errors.
+	} 
  	/* run a series of tests. If beVerbose set true give pass output
 	   but normally just output errors. 
 	   At end if any error has been found throw an assert failure
            or return false */
-	public static boolean simpleAssertTests(boolean beVerbose) {
+	public static boolean simpleTests(boolean beVerbose) {
 		if (beVerbose) 
 			 System.out.println("FractionTest tests verbose output:");
 		int numbFails = 0;
