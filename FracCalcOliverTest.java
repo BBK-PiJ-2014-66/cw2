@@ -3,22 +3,12 @@
  * author: Oliver S. Smart
  * date: from 15 Nov 2014
  *  
- * Runs tests of FracCalcOliver function and provides an 
- * assert type test.
+ * Runs tests of FracCalcOliver function
+ * Use FractionCalculatorTest to invoke
  *  
  */ 
 public class FracCalcOliverTest{
-	public static void main( String args[]) {
-		/* if assert is being used run the FractionTest to test Fraction
-                   as argument is false then non-verbose will be 
-                   silent unless there is an error */
-		assert FractionTest.simpleTestsNoVerbose() : "FractionTest failed";
-		simpleTests( true); // run in verbose mode
-	}
-
-	public static boolean simpleTests( boolean beVerbose) {
-		if (beVerbose)
-                         System.out.println("FracCalcOliverTest tests verbose output:");
+	public static int simpleTests( boolean beVerbose) { // returns number of failures
 
 		FracCalcOliver testFracCalc = new FracCalcOliver();
 
@@ -118,14 +108,11 @@ public class FracCalcOliverTest{
 
 		if (numbFails==0) {
 			if (beVerbose) System.out.println("FracCalcOliverTest: All tests pass");
-			return true;
 		} else {
 			if (beVerbose) System.out.println("FracCalcOliverTest: " + numbFails + " tests FAIL.");
 			assert (false) : "FracCalcOliverTest failed "+ numbFails + " tests";
-			return false;
 		}
-
-
+		return numbFails;
 	}
 
 }

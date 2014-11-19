@@ -16,8 +16,9 @@ public class FractionCalculatorTest{
 	} 
 
 	public static boolean simpleTests( boolean beVerbose) {
+		// test the FracCalcOliver class first as this does the crucial stuff
 		if (beVerbose)
-                         System.out.println("FractionCalculator verbose output:");
+                         System.out.println("FractionCalculator Tests verbose output:\n");
 
 		int numbFails = 0;
 		boolean testPass;
@@ -26,6 +27,13 @@ public class FractionCalculatorTest{
 		Fraction initialFraction = new Fraction(0,1);
 		Fraction resultFraction;
 		FractionCalculator testFC = new FractionCalculator();
+
+
+		if (beVerbose)
+                         System.out.println("First run tests of FracCalcOliver: " );
+		numbFails += FracCalcOliverTest.simpleTests( beVerbose);
+		if (beVerbose)
+                         System.out.println("Now test FractionCalculator: " );
 
 		lineToProcess = "1/2 - 3/4 * abs ";
 		DescribeTest = "Coursework 2 sheet 'Extended example' table 1st line start from 0/1 '" + lineToProcess 
@@ -62,7 +70,7 @@ public class FractionCalculatorTest{
 		testPass = testFC.foundError();
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 		if (numbFails==0) {
-			if (beVerbose) System.out.println("FractionCalculatorTest: All tests pass");
+			if (beVerbose) System.out.println("Summary: All tests pass");
 			return true;
 		} else {
 			if (beVerbose) System.out.println("FractionCalculatorTest: " + numbFails + " tests FAIL.");
