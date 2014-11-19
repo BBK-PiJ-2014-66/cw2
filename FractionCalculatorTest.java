@@ -21,22 +21,42 @@ public class FractionCalculatorTest{
 		String lineToProcess; 
 		Fraction initialFraction = new Fraction(0,1);
 		Fraction resultFraction;
+		FractionCalculator testFC = new FractionCalculator();
 
 		lineToProcess = "1/2 - 3/4 * abs ";
-		DescribeTest = "Coursework 2 sheet 'Extended example' table 1st line: '" + lineToProcess + "' should give Fraction.equals 1/4. ";
-		resultFraction = FractionCalculator.evaluate( initialFraction, lineToProcess);	
-		testPass = resultFraction.equals("1/4");
+		DescribeTest = "Coursework 2 sheet 'Extended example' table 1st line start from 0/1 '" + lineToProcess 
+			+ "' should give Fraction.equals 1/4. ";
+		resultFraction = testFC.evaluate( initialFraction, lineToProcess);	
+		testPass = resultFraction.equals(new Fraction(1,4));
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+		lineToProcess = "* 8 neg";
+		DescribeTest = "Test giving previous result as the input fraction '" + lineToProcess 
+			+ "' should give Fraction.equals -2/1 ";
+		resultFraction = testFC.evaluate( resultFraction, lineToProcess);	
+		testPass = resultFraction.equals(new Fraction(-2,1));
+		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+
+
+		lineToProcess = "+ 4 abs qUiT  neg";
+		DescribeTest = "Test entry of quit in mixed case  '" + lineToProcess 
+			+ "' should give .quitProgram()==true";
+		resultFraction = testFC.evaluate( resultFraction, lineToProcess);	
+		testPass = testFC.quitProgram();
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
 
 
-		lineToProcess = " 1 - - 1";
-		DescribeTest = "Entering two operations: '" + lineToProcess + "' should result in an appropriate error message an null Fraction";
+		lineToProcess = "1 - - 1";
+		DescribeTest = "Entering two operations: '" + lineToProcess + "' should result in...\n " +
+			"\t (a) foundError() providing true to caller\n" +
+			"\t (b) direct print out of an appropriate error message. So the next message\n" +
+			"\t     should be an ERROR message! (This check must be by \"eye\".)";
 		System.out.println("Now start test '"+ DescribeTest + "'");
-		resultFraction = FractionCalculator.evaluate( initialFraction, lineToProcess);	
-		testPass = (resultFraction == null);
+		resultFraction = testFC.evaluate( initialFraction, lineToProcess);	
+		DescribeTest = "Entering two operations: '" + lineToProcess +"' foundError()==true";
+		testPass = testFC.foundError();
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
-
 		if (numbFails==0) {
 			if (beVerbose) System.out.println("FractionCalculatorTest: All tests pass");
 			return true;

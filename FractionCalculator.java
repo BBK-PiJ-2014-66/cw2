@@ -4,39 +4,37 @@
  * date: from 15 Nov 2014
  *  
  * Simple text-based calculator to compute with fractions.
- *	
+ *
  */
 public class FractionCalculator {
-	public static Fraction evaluate( Fraction fraction, String inputString) {
-		/* The required function. Do not know whether it should be static
-		 * or a class function. Reasonable to assume static as input fraction
-		 * "fraction" must provide the only memory for the the calculator
-                 * state in between line inputs
-                 *
-		 *
-		 * N.B. this function will return null if any error is found 
-		 *      this function will exit the program if quit is entered
-		 */
-		Fraction retFraction = null; // return null if there is an error
+	private boolean quitProgram;
+	private boolean foundError;
 
+	public FractionCalculator() {
+		quitProgram = false;
+		foundError = false;
+	}
 
-                // use my take on a fractional calculator
+	public boolean quitProgram() {
+		return quitProgram;
+	}
+
+	public boolean foundError() {
+		return foundError;
+	}
+
+	public Fraction evaluate( Fraction fraction, String inputString) {
+		// The required function. 
+                // use my take on a fractional calculator as it is written and tested
 		FracCalcOliver myFCO = new FracCalcOliver();
-
-		myFCO.process( ("" + fraction)); // supply input fraction as a String
+		myFCO.process(("" + fraction)); // supply input fraction as a String (ugly but works)
 		myFCO.process(inputString); // then user line
-
-		if (myFCO.foundError()) { 
-			/* Print the "appropriate error message" mentioned on page 2 */
+		foundError = myFCO.foundError();
+		if (foundError) {
+			/* Directly print the "appropriate error message" mentioned on page 2 */
 			System.out.println(myFCO.outputString());
-		} else if (myFCO.quitProgram()) {
-			System.out.println("Goodbye");
-			System.exit(0); // terminate program with no error
-		} else {
-			System.out.println("debug need to write mechanism to get Fraction back from FracCalcOliver");
-			retFraction = new Fraction(0,1);
 		}
-
-		return retFraction;
+		quitProgram = myFCO.quitProgram();
+		return myFCO.getFraction();
 	}
 }
