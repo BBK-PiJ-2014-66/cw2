@@ -57,18 +57,19 @@ public class FractionCalculatorTest{
 		testPass = testFC.quitProgram();
 		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 
+		if (beVerbose) { // only do test if in verbose more as it involves output
+			lineToProcess = "1 - - 1";
+			DescribeTest = "Entering two operations: '" + lineToProcess + "' should result in...\n " +
+				"\t (a) foundError() providing true to caller\n" +
+				"\t (b) direct print out of an appropriate error message. So the next message\n" +
+				"\t     should be an ERROR message! (This check must be by \"eye\".)";
+			System.out.println("Now start test '"+ DescribeTest + "'");
+			resultFraction = testFC.evaluate( initialFraction, lineToProcess);	
+			DescribeTest = "Entering two operations: '" + lineToProcess +"' foundError()==true";
+			testPass = testFC.foundError();
+			numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+		}
 
-
-		lineToProcess = "1 - - 1";
-		DescribeTest = "Entering two operations: '" + lineToProcess + "' should result in...\n " +
-			"\t (a) foundError() providing true to caller\n" +
-			"\t (b) direct print out of an appropriate error message. So the next message\n" +
-			"\t     should be an ERROR message! (This check must be by \"eye\".)";
-		System.out.println("Now start test '"+ DescribeTest + "'");
-		resultFraction = testFC.evaluate( initialFraction, lineToProcess);	
-		DescribeTest = "Entering two operations: '" + lineToProcess +"' foundError()==true";
-		testPass = testFC.foundError();
-		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
 		if (numbFails==0) {
 			if (beVerbose) System.out.println("Summary: All tests pass");
 			return true;
