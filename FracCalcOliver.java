@@ -57,15 +57,20 @@ public class FracCalcOliver {
 		String currentPrompt = "0" + prompt;
 		while (true) {
 			System.out.print(currentPrompt);
-			String userInput = System.console().readLine();
-			myFractCalc.process(userInput);
-			if (myFractCalc.quitProgram()) break;
-			if (myFractCalc.foundError()) {
-				System.out.println(myFractCalc.outputString());
-				currentPrompt = "0" + prompt;
-			} else {
-				currentPrompt = myFractCalc.outputString() + prompt;	
-				
+			try {
+				String userInput = System.console().readLine();
+				if (userInput==null) break; // Goodbye on EOF
+				myFractCalc.process(userInput);
+				if (myFractCalc.quitProgram()) break;
+				if (myFractCalc.foundError()) {
+					System.out.println(myFractCalc.outputString());
+					currentPrompt = "0" + prompt;
+				} else {
+					currentPrompt = myFractCalc.outputString() + prompt;	
+				}
+			} catch ( Exception e) { // any exception from ReadLine
+				System.out.println("Error"); // required to use bareword Error
+				myFractCalc.resetCalculator();
 			}
 		}
 		System.out.println("Goodbye"); 
