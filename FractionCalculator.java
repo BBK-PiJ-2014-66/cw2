@@ -49,14 +49,26 @@ public class FractionCalculator {
 		FractionCalculator myFractCalc = new FractionCalculator();
 		while (true) {
 			System.out.print("Enter command: ");
-			String userInput = System.console().readLine();
-			Fraction resultFraction = myFractCalc.evaluate( currentFraction, userInput);
-			if (myFractCalc.quitProgram()) break;
-			if (myFractCalc.foundError()) {
-				currentFraction = initialFraction;
-			} else {
-				System.out.println("Result is " + resultFraction);
-				currentFraction = resultFraction;
+			try {
+				String userInput = System.console().readLine();
+				/* required to quit cleanly on "end of input exception"
+			 	* I think this means after the user enters EOF
+			 	* (ctrl-D in linux, ...).
+			 	* This does not produce an "exception" but rather results in
+			 	* an null string.
+			 	*/
+				if (userInput==null) break;
+				Fraction resultFraction = myFractCalc.evaluate( currentFraction, userInput);
+				if (myFractCalc.quitProgram()) break;
+				if (myFractCalc.foundError()) {
+					currentFraction = initialFraction;
+				} else {
+					System.out.println("Result is " + resultFraction);
+					currentFraction = resultFraction;
+				}
+			} catch ( Exception e) { // any exception from ReadLine
+					System.out.println("Error"); // required to use bareword Error
+					currentFraction = initialFraction;
 			}
 		}
 		System.out.println("Goodbye"); 
