@@ -1,15 +1,19 @@
 Coursework Two
 ==============
 
-From Programming in Java course http://www.dcs.bbk.ac.uk/courses/modules/BUCI033S7.php
+- [Fraction.java](Fraction.java) is tested with [FractionTest.java](FractionTest.java). The 
+  (verbose) test output is recorded in the git commit message.
+- [FractionCalculator.java](FractionCalculator.java) this provides the interactive calculator to be written
+  in the exercise and the required  **evaluate** method. Note that two alternative interactive calculators
+  see [README_interactive.html](README_interactive.html) for details. 
+  - [FractionCalculatorTest.java](FractionCalculatorTest.java) program to test all the classes used
+    by [FractionCalculator.java](FractionCalculator.java). 
+  - [FracCalcOliver.java](FracCalcOliver.java) because I mis-read the instruction sheet this 
+    is a provides an alternative "advanced" interactive calculator as well as providing most of
+    the actual functionality for the "basic" calculat and **evaluate** method.
+  - [FracCalcOliverTest.java](FracCalcOliverTest.java) tests for the **FracCalcOliver process** method.
+    The tests are actually run as part of [FractionCalculatorTest.java](FractionCalculatorTest.java) program.
 
-- The coursework sheet [cw2.pdf](cw2.pdf) 
-- [FractionTest.java](FractionTest.java) tests that [Fraction.java](Fraction.java) class works properly. 
-  The test output is generally given in the git commit message for each stage of the development. 
-- [FractionCalculatorTest.java](FractionCalculatorTest.java) run simple tests on the function of 
-  [FractionCalculator.java](FractionCalculator.java) (the tests are actually coded with the latter).
-	
-  The test output for the tests is recorded in the git commit message of *FractionCalculator.java*.
 
 Oliver Smart
 
