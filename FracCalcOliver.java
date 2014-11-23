@@ -10,8 +10,7 @@
  * Going to do something a bit-different from the exercise sheet.
  * It seems a bit strange that the calculator "remembers" the
  * fraction after a new line but forgets the operation. Surely
- * it would be more elegant to remember both. Also want a clean
- * way to return after user has asked for a quit.
+ * it would be more elegant to remember both. 
  * 
  * Have a void "process" object method (rather than "evaluate") this
  * will take the user user input as inputString. 
@@ -25,15 +24,13 @@
  * Other object variables will remember the complete state (including 
  * "remember operation") between different input lines. 
  *
- *
  * This approach should enable full testing for instance that entering "0/1"
  * produces an error message. (The "evaluate" method described in the exercise 
  * sheet involves direct printing of error message so precluding assert testing).
  *
- * AS WELL AS WORKING ON ITS OWN CLASS ADAPTED TO PROVIDE FUNCTIONALITY
- * FOR FractionCalculator evaluate METHOD 
- * Because of this there is now a need to provide public access to the resulting 
- * fraction!
+ * As well as working on its own class adapted to provide functionality
+ * for FractionCalculator evaluate method.  Because of this there is now a 
+ * need to provide public access to the resulting fraction!
  *
  */
 public class FracCalcOliver {
@@ -50,8 +47,11 @@ public class FracCalcOliver {
 	private static final String NONE = "";
 
 	public static void launch() {
-		System.out.println("More-advanced text-based calculator to compute with fractions.\n" +
-			"Author: Oliver S. Smart\n");
+		System.out.println(
+			"More-advanced text-based calculator to compute with fractions.\n" +
+			"Author: Oliver S. Smart\n\n" +
+			"Note: This calculator reports the fraction in memory and\n" +
+			"      any remembered operation in its prompt.\n");
 		FracCalcOliver myFractCalc = new FracCalcOliver();
 		String prompt = " >>> ";
 		String currentPrompt = "0" + prompt;
@@ -111,12 +111,9 @@ public class FracCalcOliver {
 		quitProgram = false;
 		foundError = false;
 		outputString = ""; 
-		/* uncomment following line if we want to have a calculator that does not carry 
-                   memory for current operation between lines (as in the exercise sheet) */ /*
-                rememberedOperation = NONE; */
 
-                if (inputString!=null) { // to protect against EOF (ctrl-D) entry
-			String[] words = inputString.split("\\s+"); // one or more white space characters
+                if (inputString!=null) { // protect against any EOF (ctrl-D) entry 
+			String[] words = inputString.split("\\s+"); // RE = one or more white space characters
 			for (int wc=0; wc < words.length; wc++) {
 				this.processAWord(words[wc]);
 				if (foundError) 
@@ -148,8 +145,7 @@ public class FracCalcOliver {
 	}
 
 	private boolean operatorProcess( String word) {
-		/* recognizes an operators, process appropriately 
-		   and return true */
+		// recognizes an operator, process appropriately and return true 
 		if ( word.equals(MULTIPLY) || word.equals(DIVISION) ||
 		     word.equals(ADDITION) || word.equals(SUBTRACT) ) {
 			if (!rememberedOperation.equals(NONE)) {
@@ -215,7 +211,7 @@ public class FracCalcOliver {
 	}
 
 	private boolean wholeNumberProcess( String word) {
-		if (word.matches("-?\\d+")) { // 0 or 1 - followed by one or more digits
+		if (word.matches("-?\\d+")) { // Regexe: an optional "-", followed by one or more digits
 			int numerator = Integer.parseInt(word); 
 			dealWithFraction(  new Fraction( numerator, 1));	
 			return true;	
