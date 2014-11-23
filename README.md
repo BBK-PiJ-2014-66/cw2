@@ -5,7 +5,7 @@ Coursework Two
   (verbose) test output is recorded in the git commit message.
 - [FractionCalculator.java](FractionCalculator.java) provides the exercise requirements of an 
    interactive calculator and **evaluate** method. Note that as well as the basic interactive calculator,
-    an alternative more advanced calculator can be run, see [README_interactive.html](README_interactive.html) for details. 
+    an alternative more advanced calculator can be run, see [README_interactive.asciidoc](README_interactive.asciidoc) for details. 
   - [FractionCalculatorTest.java](FractionCalculatorTest.java) program to test all the classes used
     by [FractionCalculator.java](FractionCalculator.java). 
   - [FracCalcOliver.java](FracCalcOliver.java) (because I mis-read the instruction sheet) this 
