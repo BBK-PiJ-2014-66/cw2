@@ -1,0 +1,76 @@
+FractionCalculator interactive mode 
+===================================
+
+The basic calculator does exactly what is set out on the
+Coursework sheet. This is illustrated by a text capture
+of the result of running using the Coursework Sheet
+"Extended example"
+table commands on two lines. This is followed by entering two
+operators and attempting to divide by zero demonstrating
+decent error message. Note
+that the calculator is run using +java -ea+ to enable
+the assert type testing of the functions used:
+
+....
+$ java -ea FractionCalculator
+Simple text-based calculator to compute with fractions.
+	Author: Oliver S. Smart
+
+	N.B. If you want to run an alternative more-advanced
+	version restart using the command line option -a
+
+	Usage: introduce space delimited commands like:
+	  5/7 * 31/11 - 2 neg
+	you can use fractions or whole numbers or one of the commands:
+	  abs neg clear quit               (abbreviations allowed).
+	The result of the fraction is held in memory and can be used as the start of the next calculation.
+	To stop the program enter quit or Ctrl-D.
+
+Enter command: 1/2 - 3/4 * abs
+Result is 1/4
+Enter command: 8 7/8 neg +
+Result is -7/8
+Enter command: + + 45
+
+ERROR you have input two operators: + and +. 
+	Resetting calculator to its initial state (no operator and 0 as value)
+Enter command: 2/3 / 0/5
+
+ERROR you cannot divide by zero.
+	Resetting calculator to its initial state (no operator and 0 as value)
+Enter command: Goodbye
+$
+....
+
+As an alternative (because it was already written) the advanced calculator
+can be run using the +-a+ command line option. In this mode the "current state" of
+the calculator is show before the +>>>+ prompt. The calculator "remembers" any operation
+entered showing it on the prompt. This is illustrated by entering the 
+Coursework Sheet "Extended example" table commands first on two lines
+and then again with each command as a separate input line.
+
+....
+$ java -ea FractionCalculator -a
+More-advanced text-based calculator to compute with fractions.
+Author: Oliver S. Smart
+
+Note: This calculator reports the fraction in memory and
+      any remembered operation in its prompt.
+
+0 >>>  1/2 - 3/4 * abs
+1/4 * >>>  8 7/8 neg +
+-7/8 + >>> Clear
+0 >>> 1/2
+1/2 >>> -
+1/2 - >>> 3/4
+-1/4 >>> *
+-1/4 * >>> abs
+1/4 * >>> 8
+2 >>> 7/8
+7/8 >>> neg
+-7/8 >>> +
+-7/8 + >>> qui
+Goodbye
+$
+....
+
