@@ -30,10 +30,11 @@ public class FractionCalculatorTest{
 
 
 		if (beVerbose)
-                         System.out.println("First run tests of FracCalcOliver: " );
+                         System.out.println("First run tests of FracCalcOliver process method (does the actual work!): " );
 		numbFails += FracCalcOliverTest.simpleTests( beVerbose);
 		if (beVerbose)
-                         System.out.println("Now test FractionCalculator: " );
+                        System.out.println("____________________________________________\n" +
+				           "Now test FractionCalculator evaluate method: " );
 
 		lineToProcess = "1/2 - 3/4 * abs ";
 		DescribeTest = "Coursework 2 sheet 'Extended example' table 1st line start from 0/1 '" + lineToProcess 
