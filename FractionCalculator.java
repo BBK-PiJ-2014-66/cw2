@@ -24,14 +24,15 @@ public class FractionCalculator {
 	}
 
 	public Fraction evaluate( Fraction fraction, String inputString) {
-		// The required function. 
-                // use my take on a fractional calculator as it is written and tested
+		/* The required function. 
+                 * use my take on a fractional calculator as it is written and tested
+		 */
 		FracCalcOliver myFCO = new FracCalcOliver();
 		myFCO.process(("" + fraction)); // supply input fraction as a String (ugly but works)
 		myFCO.process(inputString); // then user line
 		foundError = myFCO.foundError();
 		if (foundError) {
-			/* Directly print the "appropriate error message" mentioned on page 2 */
+			// Directly print the "appropriate error message" mentioned on page 2 
 			System.out.println(myFCO.outputString());
 		}
 		quitProgram = myFCO.quitProgram();
@@ -68,27 +69,29 @@ public class FractionCalculator {
 			try {
 				String userInput = System.console().readLine();
 				/* required to quit cleanly on "end of input exception"
-			 	* I think this means after the user enters EOF
-			 	* (ctrl-D in linux, ...).
-			 	* This does not produce an "exception" but rather results in
-			 	* an null string.
-			 	*/
+			 	 * I think this means after the user enters EOF (end of file)
+			 	 * (ctrl-D in linux, ...).
+			 	 * As System.console().readLine() is used https://docs.oracle.com/javase/7/docs/api/ 
+                                 * says that readLine returns "A string containing the line read from the console, 
+ 				 * not including any line-termination characters, or null if an end of stream has 
+				 * been reached.".
+                                 * So entry of EOF does not result in an exception but instead in a null string.
+			 	 */
 				if (userInput==null) break;
 				Fraction resultFraction = myFractCalc.evaluate( currentFraction, userInput);
 				if (myFractCalc.quitProgram()) break;
 				if (myFractCalc.foundError()) {
+
 					currentFraction = initialFraction;
 				} else {
 					System.out.println("Result is " + resultFraction);
 					currentFraction = resultFraction;
 				}
-			} catch ( Exception e) { // any exception from ReadLine
-					System.out.println("Error"); // required to use bareword Error
+			} catch ( Exception e) { // any exception from ReadLine or evaluate
+					System.out.println("Error"); // required to use bareword "Error"
 					currentFraction = initialFraction;
 			}
 		}
-		System.out.println("Goodbye"); 
+		System.out.println("Goodbye"); // required
 	}
-
-
 }
