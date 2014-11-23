@@ -40,14 +40,14 @@ public class FractionCalculatorTest{
 			+ "' should give Fraction.equals 1/4. ";
 		resultFraction = testFC.evaluate( initialFraction, lineToProcess);	
 		testPass = resultFraction.equals(new Fraction(1,4));
-		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+		numbFails += FractionTest.printTestResults( testPass, DescribeTest, beVerbose);
 
 		lineToProcess = "* 8 neg";
 		DescribeTest = "Test giving previous result as the input fraction '" + lineToProcess 
 			+ "' should give Fraction.equals -2/1 ";
 		resultFraction = testFC.evaluate( resultFraction, lineToProcess);	
 		testPass = resultFraction.equals(new Fraction(-2,1));
-		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+		numbFails += FractionTest.printTestResults( testPass, DescribeTest, beVerbose);
 
 
 		lineToProcess = "+ 4 abs qUiT  neg";
@@ -55,7 +55,7 @@ public class FractionCalculatorTest{
 			+ "' should give .quitProgram()==true";
 		resultFraction = testFC.evaluate( resultFraction, lineToProcess);	
 		testPass = testFC.quitProgram();
-		numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+		numbFails += FractionTest.printTestResults( testPass, DescribeTest, beVerbose);
 
 		if (beVerbose) { // only do test if in verbose more as it involves output
 			lineToProcess = "1 - - 1";
@@ -67,7 +67,7 @@ public class FractionCalculatorTest{
 			resultFraction = testFC.evaluate( initialFraction, lineToProcess);	
 			DescribeTest = "Entering two operations: '" + lineToProcess +"' foundError()==true";
 			testPass = testFC.foundError();
-			numbFails += FractionTest.likeAssert( testPass, DescribeTest, beVerbose);
+			numbFails += FractionTest.printTestResults( testPass, DescribeTest, beVerbose);
 		}
 
 		if (numbFails==0) {
